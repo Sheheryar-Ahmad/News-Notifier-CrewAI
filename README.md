@@ -33,24 +33,24 @@ graph TD
     classDef tool fill:#bbf,stroke:#333,stroke-width:1px;
     classDef data fill:#dfd,stroke:#333,stroke-width:1px;
 
-    Start([Start: topic input]) --> A
+    Start(["Start: topic input"]) --> A
     
-    A[Web Research Specialist<br/>(Groq/Llama-3.1)]:::agent -->|Use| B(search_tool):::tool
-    B -->|Search Results (3 URLs)| C
+    A["Web Research Specialist<br/>(Groq/Llama-3.1)"]:::agent -->|Use| B["search_tool"]:::tool
+    B -->|"Search Results (3 URLs)"| C
     
-    C[Data Extraction Specialist<br/>(Groq/Llama-3.1)]:::agent -->|Use| D(scrape_first_article):::tool
-    D -->|Article Text & Source URL| E
+    C["Data Extraction Specialist<br/>(Groq/Llama-3.1)"]:::agent -->|Use| D["scrape_first_article"]:::tool
+    D -->|"Article Text & Source URL"| E
     
-    E[Senior Content Editor<br/>(Gemini-3.1-Flash-Lite)]:::agent -->|Summarize to 3 Bullet Points| F[Edit Task Context]
+    E["Senior Content Editor<br/>(Gemini-3.1-Flash-Lite)"]:::agent -->|"Summarize to 3 Bullet Points"| F["Edit Task Context"]
     
-    F --> G[Google Sheets Specialist<br/>(HF/Qwen-2.5)]:::agent
-    F --> I[Slack Expert<br/>(Gemini-3.1-Flash-Lite)]:::agent
+    F --> G["Google Sheets Specialist<br/>(HF/Qwen-2.5)"]:::agent
+    F --> I["Slack Expert<br/>(Gemini-3.1-Flash-Lite)"]:::agent
     
-    G -->|Use| H(sheets_tool):::tool
-    H -->|Append Row| GS[(Google Sheets)]:::data
+    G -->|Use| H["sheets_tool"]:::tool
+    H -->|Append Row| GS[("Google Sheets")]:::data
     
-    I -->|Use| J(send_to_slack):::tool
-    J -->|Post Message| SC[Slack Channel]:::data
+    I -->|Use| J["send_to_slack"]:::tool
+    J -->|"Post Message"| SC["Slack Channel"]:::data
 ```
 
 ---
