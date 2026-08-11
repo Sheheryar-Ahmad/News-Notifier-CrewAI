@@ -1,7 +1,13 @@
 [project]
 name = "news-notifier-crewai"
 version = "0.1.0"
-dependencies = []
+dependencies = [
+    "crewai",
+    "litellm",
+    "gspread",
+    "requests",
+    "beautifulsoup4"
+]
 
 [tool.vercel]
 entrypoint = "api.cron:handler"
