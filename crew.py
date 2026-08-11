@@ -178,11 +178,12 @@ news_crew = Crew(
     verbose=True,
 )
 
-if __name__ == "__main__":
+def run_news_crew():
     reset_search_state()
     reset_scrape_state()
-
     result = news_crew.kickoff(inputs={"topic": "Snakes"})
+    return result
 
-    # print("### FINAL RESULT ###")
-    # print(result)
+# 2. Keep this block so you can still test it locally!
+if __name__ == "__main__":
+    run_news_crew()
