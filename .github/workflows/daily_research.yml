@@ -1,0 +1,33 @@
+name: Daily Research Automation
+
+on:
+  schedule:
+    - cron: '0 9 * * *' # Runs at 09:00 UTC every day
+  workflow_dispatch: # Allows you to run it manually for testing!
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create credentials.json from Secret
+        run: echo '${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}' > tools/credentials.json
+
+      - name: Run CrewAI Pipeline
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          HUGGINGFACE_API_KEY: ${{ secrets.HUGGINGFACE_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+        run: python crew.py
